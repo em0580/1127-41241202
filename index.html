@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google 註冊與登入</title>
+    <link rel="stylesheet" href="style.css"> <!-- 引入 CSS 檔案 -->
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS 和 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5">Google 註冊與登入</h1>
+
+        <div id="auth" class="auth-container text-center">
+            <button id="google-register-btn" class="auth-btn">註冊</button>
+            <button id="google-login-btn" class="auth-btn">登入</button>
+        </div>
+
+        <div id="user-actions" class="user-actions text-center mt-4" style="display: none;">
+            <div class="user-action-btns">
+                <!-- 使用 auth-btn 類別來統一樣式 -->
+                <button id="member-info-btn" class="auth-btn">會員資料</button>
+                <button id="logout-btn" class="auth-btn">登出</button>
+            </div>
+        </div>
+        
+
+        <!-- Modal -->
+        <div class="modal fade" id="user-info-modal" tabindex="-1" aria-labelledby="userInfoModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="userInfoModalLabel">會員資料</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="user-info">
+                            <img id="profile-pic" src="" alt="User Photo" class="img-fluid rounded-circle mb-3">
+                            <p id="user-name" class="lead"></p>
+                            <p id="user-email"></p>
+                            <p id="last-login"></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 新增筆記表單 -->
+        <div id="note-form" class="note-form" style="display: none;">
+            <input type="text" id="note-title" placeholder="輸入筆記標題" class="form-control mb-3">
+            <textarea id="note-content" placeholder="輸入您的筆記..." class="form-control mb-3"></textarea>
+            <button id="save-note-btn" class="btn btn-success btn-lg">儲存筆記</button>
+            <div id="notes-list" class="mt-4"></div>
+        </div>
+    </div>
+
+    <!-- 編輯筆記 Modal -->
+    <div class="modal fade" id="editNoteModal" tabindex="-1" role="dialog" aria-labelledby="editNoteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editNoteModalLabel">編輯筆記</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="edit-note-title" class="form-control mb-3" placeholder="筆記標題">
+                    <textarea id="edit-note-content" class="form-control mb-3" rows="4" placeholder="筆記內容"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="save-edit-note-btn">儲存修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 刪除筆記確認 Modal -->
+    <div class="modal fade" id="deleteNoteModal" tabindex="-1" role="dialog" aria-labelledby="deleteNoteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteNoteModalLabel">確認刪除筆記</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>確定要刪除此筆記嗎？此操作無法復原。</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-danger" id="confirm-delete-note-btn">刪除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="auth.js"></script> <!-- 引入 JavaScript 檔案 -->
+</body>
+
+</html>
